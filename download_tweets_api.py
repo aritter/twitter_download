@@ -31,8 +31,10 @@ for line in open(sys.argv[1]):
                 reset = rate['resources']['statuses']['/statuses/show/:id']['reset']
                 now = datetime.datetime.today()
                 future = datetime.datetime.fromtimestamp(reset)
-                sys.stderr.write("Rate limit exceeded, sleeping until %s\n" % future)
-                time.sleep((future-now).seconds)
+                seconds = (future-now).seconds+1
+                if seconds < 10000:
+                    sys.stderr.write("Rate limit exceeded, sleeping for %s seconds until %s\n" % (seconds, future))
+                    time.sleep(seconds)
             else:
                 cache[sid] = 'Not Available'
             
