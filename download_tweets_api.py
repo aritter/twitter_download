@@ -2,8 +2,15 @@ import sys
 import os
 import time
 import datetime
+import argparse
 
 from twitter import *
+
+parser = argparse.ArgumentParser(description="downloads tweets")
+parser.add_argument('--partial', dest='partial', default=None, type=argparse.FileType('r'))
+parser.add_argument('--dist', dest='dist', default=None, type=argparse.FileType('r'), required=True)
+
+args = parser.parse_args()
 
 CONSUMER_KEY='JEdRRoDsfwzCtupkir4ivQ'
 CONSUMER_SECRET='PAbSSmzQxbcnkYYH2vQpKVSq2yPARfKm0Yl6DrLc'
@@ -15,8 +22,14 @@ oauth_token, oauth_secret = read_token_file(MY_TWITTER_CREDS)
 t = Twitter(auth=OAuth(oauth_token, oauth_secret, CONSUMER_KEY, CONSUMER_SECRET))
 
 cache = {}
+if args.partial != None:
+    for line in args.partial:
+        fields = line.strip().split("\t")
+        text = fields[-1]
+        sid = fields[0]
+        cache[sid] = text
 
-for line in open(sys.argv[1]):
+for line in args.dist:
     fields = line.strip().split('\t')
     sid = fields[0]
     uid = fields[1]
