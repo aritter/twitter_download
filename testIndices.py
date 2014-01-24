@@ -11,8 +11,12 @@ for line in open(sys.argv[1]):
     
     #print str(text.split(' '))
 
-    words = [x for x in text.split(' ') if x != '']
+    #words = [x for x in text.split(' ') if x != '']
+    words = text.split(' ')
 #    if words[0] == "RT" and words[1][0] == '@':
 #        words = words[2:]
+
+    if si > len(words) or ei > len(words):
+        raise Exception("index outside of bounds")
 
     print "\t".join([text, str(si), str(ei), " ".join(words[si:ei+1]), sentiment])
