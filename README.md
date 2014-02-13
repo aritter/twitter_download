@@ -7,7 +7,8 @@ Prerequisites:
 --------------
 [sixohsix/twitter](https://github.com/sixohsix/twitter)
 
-```easy_install twitter
+```
+easy_install twitter
 
 Usage:
 --------------
@@ -17,11 +18,13 @@ The first time you run this, it should open up a web browser, have you log into 
 1. Login to Twitter with your user name in your *default* browser.
 2. Run the code like this: 
 
-```python download_tweets_api.py
+```
+python download_tweets_api.py
 
 3. Download tweets like so
 
-```python download_tweets_api.py --dist=tweeti-a.dist.tsv > downloaded.tsv
+```
+python download_tweets_api.py --dist=tweeti-a.dist.tsv > downloaded.tsv
 
 
 Restarting after a partial download:
@@ -29,4 +32,5 @@ Restarting after a partial download:
 In case the script hangs in the middle of the download for whatever reason, use the --partial argument to specify the file containing partially downloaded results.  
 This way you won't have to start from scratch again:
 
-```python download_tweets_api.py --dist=tweeti-a.dist.tsv --partial=downloaded.tsv > downloaded2.tsv
+```
+python download_tweets_api.py --dist=tweeti-a.dist.tsv --partial=downloaded.tsv > downloaded2.tsv
