@@ -18,11 +18,11 @@ The first time you run this, it should open up a web browser, have you log into 
 
 2. I had to run the code like this: 
 
-	python download_tweets_api.py
+   python download_tweets_api.py
 
 3. Download tweets like so
 
-	python download_tweets_api.py --dist=tweeti-a.dist.tsv > downloaded.tsv
+   python download_tweets_api.py --dist=tweeti-a.dist.tsv > downloaded.tsv
 
 
 Restarting after a partial download:
