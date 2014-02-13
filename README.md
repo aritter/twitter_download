@@ -9,6 +9,7 @@ Prerequisites:
 
 ```
 easy_install twitter
+```
 
 Usage:
 --------------
