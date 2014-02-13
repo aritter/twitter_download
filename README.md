@@ -16,9 +16,11 @@ The first time you run this, it should open up a web browser, have you log into 
 
 1. Login to Twitter with your user name in your *default* browser.
 2. I had to run the code like this: 
->	python download_tweets_api.py
+
+	python download_tweets_api.py
 3. Download tweets like so
->	python download_tweets_api.py --dist=tweeti-a.dist.tsv > downloaded.tsv
+
+	python download_tweets_api.py --dist=tweeti-a.dist.tsv > downloaded.tsv
 
 
 Restarting after a partial download:
