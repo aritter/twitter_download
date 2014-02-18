@@ -23,6 +23,8 @@ The first time you run this, it should open up a web browser, have you log into 
 python download_tweets_api.py --dist=tweeti-a.dist.tsv > downloaded.tsv
 ```
 
+-Note that it takes about 18 hours to download the Semeval sentiment analysis training dataset.
+
 Restarting after a partial download:
 --------------
 In case the script hangs in the middle of the download for whatever reason, use the --partial argument to specify the file containing partially downloaded results.  
