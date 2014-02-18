@@ -31,3 +31,16 @@ This way you won't have to start from scratch again:
 ```
 python download_tweets_api.py --dist=tweeti-a.dist.tsv --partial=downloaded.tsv > downloaded2.tsv
 ```
+
+Task A Mention Test Script
+--------------
+To print out the mentions and annotations from task A you can use the `testIndices.py` script like so:
+
+```
+python testIndices.py downloaded.tsv
+```
+This just prints out the mentions with sentiment annotations for easier inspection.
+
+Notes:
+--------------
+- You may need to manually change the link that is printed out for authorization to use https:// instead of http://
