@@ -46,3 +46,4 @@ This just prints out the mentions with sentiment annotations for easier inspecti
 Notes:
 --------------
 - You may need to manually change the link that is printed out for authorization to use https:// instead of http://
+- The time on your computer needs to be set accurately.  Thanks to Canberk for noting this on the email list.
