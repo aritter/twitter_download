@@ -8,7 +8,8 @@ from twitter import *
 
 parser = argparse.ArgumentParser(description="downloads tweets")
 parser.add_argument('--partial', dest='partial', default=None, type=argparse.FileType('r'))
-parser.add_argument('--dist', dest='dist', default=None, type=argparse.FileType('r'), required=True)
+parser.add_argument('--dist', dest='dist', default=None, type=argparse.FileType('r', encoding='utf-8'), required=True)
+parser.add_argument('--output', dest='output', default=None, type=argparse.FileType('w', encoding='utf-8'), required=True)
 
 args = parser.parse_args()
 
@@ -34,7 +35,7 @@ for line in args.dist:
     sid = fields[0]
     uid = fields[1]
 
-    while not cache.has_key(sid):
+    while not sid in cache:
         try:
             text = t.statuses.show(_id=sid)['text'].replace('\n', ' ').replace('\r', ' ')
             cache[sid] = text
@@ -50,7 +51,7 @@ for line in args.dist:
                     time.sleep(seconds)
             else:
                 cache[sid] = 'Not Available'
-            
+
     text = cache[sid]
 
-    print "\t".join(fields + [text])
+    args.output.write("\t".join(fields + [text]) + '\n')
