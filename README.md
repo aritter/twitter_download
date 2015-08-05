@@ -20,7 +20,7 @@ The first time you run this, it should open up a web browser, have you log into 
 2. Run the script like this to download your credentials: `python download_tweets_api.py --dist=tweeti-a.dist.tsv`
 3. Download tweets like so: 
 ```
-python download_tweets_api.py --dist=tweeti-a.dist.tsv > downloaded.tsv
+python download_tweets_api.py --dist=tweeti-a.dist.tsv --output=downloaded.tsv
 ```
 
 -Note that it takes about 18 hours to download the Semeval sentiment analysis training dataset.
@@ -31,7 +31,7 @@ In case the script hangs in the middle of the download for whatever reason, use 
 This way you won't have to start from scratch again:
 
 ```
-python download_tweets_api.py --dist=tweeti-a.dist.tsv --partial=downloaded.tsv > downloaded2.tsv
+python download_tweets_api.py --dist=tweeti-a.dist.tsv --partial=downloaded.tsv --output=downloaded2.tsv
 ```
 
 Task A Mention Test Script
