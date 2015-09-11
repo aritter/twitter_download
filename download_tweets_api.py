@@ -8,8 +8,8 @@ from twitter import *
 
 parser = argparse.ArgumentParser(description="downloads tweets")
 parser.add_argument('--partial', dest='partial', default=None, type=argparse.FileType('r'))
-parser.add_argument('--dist', dest='dist', default=None, type=argparse.FileType('r', encoding='utf-8'), required=True)
-parser.add_argument('--output', dest='output', default=None, type=argparse.FileType('w', encoding='utf-8'), required=True)
+parser.add_argument('--dist', dest='dist', default=None, type=argparse.FileType('r'), required=True)
+parser.add_argument('--output', dest='output', default=None, type=argparse.FileType('w'), required=True)
 
 args = parser.parse_args()
 
