@@ -33,7 +33,6 @@ if args.partial != None:
 for line in args.dist:
     fields = line.strip().split('\t')
     sid = fields[0]
-    uid = fields[1]
 
     while not sid in cache:
         try:
