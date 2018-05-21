@@ -6,9 +6,11 @@ For downloading tweets distributed using IDs to protect privacy.  Uses the forma
 Prerequisites:
 --------------
 [sixohsix/twitter](https://github.com/sixohsix/twitter)
+[tqdm/tqdm](https://github.com/tqdm/tqdm)
 
 ```
 easy_install twitter
+easy_install tqdm
 ```
 
 Usage:
