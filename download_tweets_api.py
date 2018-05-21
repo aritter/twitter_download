@@ -1,7 +1,12 @@
 # From Semeval 2014 Task 7
 # http://alt.qcri.org/semeval2014/task9/index.php?id=data-and-tools
 # Modified by Samuel Leeman-Munk
-
+from __future__ import print_function
+from __future__ import unicode_literals
+try:
+    from urllib.error import URLError
+except ImportError:
+    from urllib2 import URLError
 
 import argparse
 import datetime
@@ -10,6 +15,19 @@ from twitter import *
 import os
 import signal
 import time
+import tqdm
+
+from io import open
+import sys
+
+if sys.version_info[0] < 3:
+    class TimeoutError(Exception):
+        """Python 2.x stand-in for Python 3 TimeoutError.
+        """
+
+        def __init__(self, expr=None, msg=None):
+            self.expr = expr
+            self.msg = msg
 
 start_time = time.time()
 print("Started at", str(datetime.datetime.now()))
@@ -17,7 +35,7 @@ print("Started at", str(datetime.datetime.now()))
 
 # The three-second timeout prevents the download from hanging
 # from https://stackoverflow.com/questions/2281850/timeout-function-if-it-takes-too-long-to-finish
-class timeout:
+class Timeout:
     def __init__(self, seconds=1, error_message='Timeout'):
         self.seconds = seconds
         self.error_message = error_message
@@ -52,7 +70,7 @@ t = Twitter(auth=OAuth(oauth_token, oauth_secret, CONSUMER_KEY, CONSUMER_SECRET)
 if os.path.exists(args.outputpath):
     raise IOError("Cannot overwrite existing output file. Delete or move the file or pick a different output path")
 
-with open(args.outputpath, 'w') as output:
+with open(args.outputpath, 'w', encoding='utf-8') as output:
     cache = {}
     if args.partial != None:
         for line in args.partial:
@@ -61,16 +79,18 @@ with open(args.outputpath, 'w') as output:
             sid = fields[0]
             cache[sid] = text
 
-    for i, line in enumerate(args.dist):
-        if i % 1 == 0:
-            print("\r{}".format(i), end="\t")
+    data = args.dist.read().split("\n")
+
+    for line in tqdm.tqdm(data,desc= "Download Progress",unit='tweet'):
+        if line.strip() == "":
+            continue
         fields = line.strip().split('\t')
         sid = fields[0]
         uid = fields[1]
 
         while not sid in cache:
             try:
-                with timeout(seconds=3):
+                with Timeout(seconds=3):
                     text = t.statuses.show(_id=sid)['text'].replace('\n', ' ').replace('\r', ' ')
 
                 cache[sid] = text
@@ -88,7 +108,7 @@ with open(args.outputpath, 'w') as output:
                     cache[sid] = 'Not Available'
             except TimeoutError as e:
                 print("Timed out. Trying again.")
-            except urllib.error.URLError as e:
+            except URLError as e:
                 print("URLError. Trying again")
         text = cache[sid]
 
