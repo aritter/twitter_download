@@ -58,8 +58,9 @@ parser.add_argument('--output', dest='outputpath', default=None, type=str, requi
 
 args = parser.parse_args()
 
-CONSUMER_KEY = 'JEdRRoDsfwzCtupkir4ivQ'
-CONSUMER_SECRET = 'PAbSSmzQxbcnkYYH2vQpKVSq2yPARfKm0Yl6DrLc'
+#See https://developer.twitter.com/en/docs/basics/authentication/overview/oauth
+CONSUMER_KEY = YOUR_CONSUMER_KEY
+CONSUMER_SECRET = YOUR_CONSUMER_SECRET
 
 MY_TWITTER_CREDS = os.path.expanduser('~/.my_app_credentials')
 if not os.path.exists(MY_TWITTER_CREDS):
